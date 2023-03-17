@@ -10,17 +10,32 @@
 
 \begin{document}
 
-\section*{Kepler's Second Law Derivation}
+\section{Kepler's Second Law Derivation}
 
-\subsection*{Definition}
+\subsection{Review of Calculus}
 
+\subsubsection{Limits and Derivatives}
+\begin{sloppypar}
+  Limits describe the behavior of a function near a point. For example, $\displaystyle{\lim_{x \to 2} x + 4 = 6}$
+  since $2 + 4 = 6$.
+  Special limits like
+  $$\lim_{h \to 0} \frac{f(x+h)-f(x)}{h}$$
+  represent the derivative, or instantaneous slope, of a function at a point.
+  Similarly, you may take for granted that an expression like
+  $$\lim_{t \to 0} \frac{\Delta x}{\Delta t} = \frac{dx}{dt} .$$
+\end{sloppypar}
+
+\subsubsection{Integration}
+The power rule of integration for any function $x$ is as follows:
+$$\int_{}^{} x^n \,dx = \frac{x^{n+1}}{n+1} + C .$$
+
+\subsection{Definition}
 A line joining a planet and the Sun sweeps out equal areas during equal intervals of time.
 
-\subsection*{Derivation}
-
+\subsection{Derivation}
 For this line to sweep out equal area during equal time,
 the rate at which the area changes, $\frac{dA}{dt}$ must stay constant.
-One ``infinitely'' small slice of the area of a planet's elliptical orbit may be represented as
+One small slice of the area of a planet's elliptical orbit may be represented as
 a triangle
 
 $$\begin{tikzpicture}
@@ -32,30 +47,35 @@ $$\begin{tikzpicture}
     \tkzDrawSegments(A,B B,C C,A)
 
     \tkzLabelSegment[below=1pt](C,A){$r$}
-    \tkzLabelSegment[right=1pt](B,C){$rd\theta$}
+    \tkzLabelSegment[right=1pt](B,C){$r \Delta \theta$}
 
     \tkzMarkAngle[size=0.60cm](C,A,B)
-    \tkzLabelAngle(C,A,B){$d\theta$}
+    \tkzLabelAngle(C,A,B){$\Delta \theta$}
 
-    \tkzLabelSegment[left=2pt](B,C){$dA$}
+    \tkzLabelSegment[left=2pt](B,C){$\Delta A$}
 
   \end{tikzpicture}$$
 
-with base $r$, height $rd\theta$, and area $dA$ (recall that arc length is $rd\theta$).\\
+with base $r$, height $r \Delta \theta$, and area $\Delta A$ (recall that arc length is $r \Delta \theta$).\\
 Recall the equation for the area of a triangle,
 $$A = \frac{1}{2}bh .$$
-Substituing the givens from our infinitely small slice above, we get
-$$dA = \frac{1}{2} (r) (rd\theta) .$$
-Divide both sides by dt (keep in mind that $r$ is constant)
-$$\frac{dA}{dt} = \frac{1}{2} (r) (r \frac{d\theta}{dt}) ,$$
-which simplies to
+Substituing the givens from our slice above, we get
+$$\Delta A = \frac{1}{2} (r) (r \Delta \theta) .$$
+Divide both sides by $\Delta t$
+$$\frac{\Delta A}{\Delta t} = \frac{1}{2} (r) (r \frac{\Delta \theta}{\Delta t}) .$$
+Take the limit of boths sides as $\Delta t \to 0$ to find an ``infinitely'' small change of area over
+an ``infinitely'' small change of time (keep in mind that $r$ is constant for our slice and that area $A$ is a function of time).
+$$\lim_{\Delta t \to 0} (\frac{\Delta A}{\Delta t}) = \lim_{\Delta t \to 0} (\frac{1}{2} (r) (r \frac{\Delta \theta}{\Delta t})) ,$$
+which simplifies to
+$$\frac{dA}{dt} = \frac{1}{2} (r) (r \frac{d\theta}{dt})$$
+and further simplies to
 $$\frac{dA}{dt} = \frac{1}{2} r v_t .$$
 Recall that angular momentum is
 $$L = mrv_t$$
 and is a conserved quantity. Substiting L into our area gets
 $$\frac{dA}{dt} = \frac{L}{2m} .$$
 We can then rearrange and solve the differential equation
-$$\int_{}^{} \,dA = \int_{}^{} \frac{L}{2m} \,dt $$
+$$\int_{}^{} \,dA = \int_{}^{} \frac{L}{2m} \,dt ,$$
 which shows us that
 $$A = \frac{L}{2m} T .$$
 This shows us a directly proportional relationship between the area $A$ and time $T$.
